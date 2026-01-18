@@ -20,5 +20,17 @@ services:
     tty: true
     stdin_open: true
 
+  opencode-web:
+    image: ghcr.io/anomalyco/opencode:latest
+    command: ["opencode", "web", "--host", "0.0.0.0", "--port", "3000", "--no-browser"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - opencode-config:/root/.opencode
+      - ./workspace:/workspace
+    working_dir: /workspace
+    environment:
+      - OPENCODE_SERVER_PASSWORD=opencode
+
 volumes:
   opencode-config:
