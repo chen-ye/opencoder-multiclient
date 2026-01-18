@@ -40,5 +40,6 @@ The `workspace/` directory in this repository is mounted to `/workspace` inside 
 
 ## Deployment
 
-The Docker image for CodeNomad is automatically built and published to GHCR:
-`ghcr.io/chen-ye/codenomad-docker:latest`
+The Docker images are automatically built and published to GHCR:
+*   `ghcr.io/chen-ye/codenomad-docker:latest`
+*   `ghcr.io/chen-ye/opencode-manager:latest`

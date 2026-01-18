@@ -37,9 +37,11 @@ services:
     # No password set as it is behind a zero trust network
 
   opencode-manager:
-    build:
-      context: https://github.com/chriswritescode-dev/opencode-manager.git#main
-      dockerfile: Dockerfile
+    image: ghcr.io/chen-ye/opencode-manager:latest
+    # To build from source instead:
+    # build:
+    #   context: https://github.com/chriswritescode-dev/opencode-manager.git#main
+    #   dockerfile: Dockerfile
     ports:
       - "5003:5003"
       - "5100-5103:5100-5103"
