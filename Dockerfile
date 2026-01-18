@@ -1,16 +1,17 @@
-FROM node:lts-alpine
+FROM node:20-slim
 
 # Install system dependencies
-# build-base: equivalent to build-essential for compiling native modules
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     git \
     python3 \
-    py3-pip \
+    python3-pip \
     curl \
-    build-base \
-    && ln -sf /usr/bin/python3 /usr/bin/python
+    build-essential \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -s /usr/bin/python3 /usr/bin/python
 
 # Install OpenCode CLI and CodeNomad globally
+# --unsafe-perm=true is required for post-install scripts
 RUN npm install -g opencode-ai @neuralnomads/codenomad --unsafe-perm=true
 
 WORKDIR /workspace
