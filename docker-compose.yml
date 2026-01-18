@@ -13,6 +13,7 @@ services:
     volumes:
       # Persist OpenCode configuration and auth
       - opencode-config:/root/.opencode
+      - opencode-share:/root/.local/share/opencode
       # Mount a workspace directory for projects
       - opencode-workspace:/workspace
       # To use a bind mount instead of a Docker volume, uncomment the line below and comment the line above:
@@ -32,6 +33,7 @@ services:
       - "3000:3000"
     volumes:
       - opencode-config:/root/.opencode
+      - opencode-share:/root/.local/share/opencode
       - opencode-workspace:/workspace
       # To use a bind mount instead:
       # - ./workspace:/workspace
@@ -57,10 +59,12 @@ services:
       # To use a bind mount instead:
       # - ./workspace:/workspace
       - opencode-config:/home/node/.opencode
+      - opencode-share:/home/node/.local/share/opencode
       - opencode-manager-data:/app/data
     restart: unless-stopped
 
 volumes:
   opencode-config:
+  opencode-share:
   opencode-manager-data:
   opencode-workspace:
