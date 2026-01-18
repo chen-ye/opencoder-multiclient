@@ -28,13 +28,7 @@ services:
     volumes:
       - opencode-config:/root/.opencode
       - ./workspace:/workspace
-    ports:
-      - "3000:3000"
-    volumes:
-      - opencode-config:/root/.opencode
-      - ./workspace:/workspace
     working_dir: /workspace
-    # No password set as it is behind a zero trust network
 
   opencode-manager:
     image: ghcr.io/chen-ye/opencode-manager:latest
