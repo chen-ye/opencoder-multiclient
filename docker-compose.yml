@@ -3,6 +3,7 @@ version: '3.8'
 services:
   codenomad:
     image: ghcr.io/chen-ye/codenomad-docker:latest
+    pull_policy: always
     # To build locally instead of using the published image, uncomment the next 3 lines:
     # build:
     #   context: .
@@ -22,6 +23,7 @@ services:
 
   opencode-web:
     image: ghcr.io/anomalyco/opencode:latest
+    pull_policy: always
     command: ["opencode", "web", "--hostname", "0.0.0.0", "--port", "3000"]
     ports:
       - "3000:3000"
@@ -32,6 +34,7 @@ services:
 
   opencode-manager:
     image: ghcr.io/chen-ye/opencode-manager:latest
+    pull_policy: always
     # To build from source instead:
     # build:
     #   context: https://github.com/chriswritescode-dev/opencode-manager.git#main
