@@ -28,7 +28,31 @@ services:
     volumes:
       - opencode-config:/root/.opencode
       - ./workspace:/workspace
+    ports:
+      - "3000:3000"
+    volumes:
+      - opencode-config:/root/.opencode
+      - ./workspace:/workspace
     working_dir: /workspace
+    # No password set as it is behind a zero trust network
+
+  opencode-manager:
+    build:
+      context: https://github.com/chriswritescode-dev/opencode-manager.git#main
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5003"
+      - "5100-5103:5100-5103"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=5003
+      - WORKSPACE_PATH=/workspace
+    volumes:
+      - ./workspace:/workspace
+      - opencode-config:/root/.opencode
+      - opencode-manager-data:/app/data
+    restart: unless-stopped
 
 volumes:
   opencode-config:
+  opencode-manager-data:

@@ -8,6 +8,7 @@ A Dockerized environment for running [CodeNomad](https://github.com/NeuralNomads
 | :--- | :--- | :--- |
 | **CodeNomad** | `9898` | A fast, multi-instance workspace for OpenCode. |
 | **OpenCode Web** | `3000` | The official OpenCode web interface. |
+| **OpenCode Manager** | `5003` | Mobile-first web interface with Git integration. |
 
 ## Quick Start
 
@@ -19,6 +20,7 @@ A Dockerized environment for running [CodeNomad](https://github.com/NeuralNomads
 2.  **Access the interfaces**
     *   **CodeNomad**: [http://localhost:9898](http://localhost:9898)
     *   **OpenCode Web**: [http://localhost:3000](http://localhost:3000)
+    *   **OpenCode Manager**: [http://localhost:5003](http://localhost:5003)
 
 ## Configuration
 
