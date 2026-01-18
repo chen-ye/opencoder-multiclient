@@ -11,6 +11,8 @@ services:
     ports:
       - "9898:9898"
     volumes:
+      # Persist CodeNomad configuration and state
+      - codenomad-config:/root/.config/codenomad
       # Persist OpenCode configuration and auth
       - opencode-config:/root/.opencode
       - opencode-share:/root/.local/share/opencode
@@ -64,6 +66,7 @@ services:
     restart: unless-stopped
 
 volumes:
+  codenomad-config:
   opencode-config:
   opencode-share:
   opencode-manager-data:
