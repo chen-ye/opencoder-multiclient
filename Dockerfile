@@ -11,7 +11,7 @@ RUN apk add --no-cache \
     && ln -sf /usr/bin/python3 /usr/bin/python
 
 # Install OpenCode CLI and CodeNomad globally
-RUN npm install -g opencode-ai @neuralnomads/codenomad
+RUN npm install -g opencode-ai @neuralnomads/codenomad --unsafe-perm=true
 
 WORKDIR /workspace
 
