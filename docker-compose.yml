@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   codenomad:
-    image: ghcr.io/neuralnomadsai/codenomad:latest
+    image: ghcr.io/chen-ye/codenomad-docker:latest
     # To build locally instead of using the published image, uncomment the next 3 lines:
     # build:
     #   context: .
