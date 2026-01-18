@@ -23,5 +23,5 @@ ENV HOST=0.0.0.0
 ENV PORT=9898
 
 # Start CodeNomad server
-# --no-launch prevents it from trying to open a local browser inside the container
-CMD codenomad --host $HOST --port $PORT --no-launch
+# Launching is disabled by default
+CMD codenomad --host $HOST --port $PORT
