@@ -40,6 +40,7 @@ services:
   opencode-manager:
     image: ghcr.io/chen-ye/opencode-manager:latest
     pull_policy: always
+    user: root
     # To build from source instead:
     # build:
     #   context: https://github.com/chriswritescode-dev/opencode-manager.git#main
@@ -55,7 +56,7 @@ services:
       - ./workspace:/workspace
       # To use a Docker volume instead:
       # - opencode-workspace:/workspace
-      - opencode-config:/root/.opencode
+      - opencode-config:/home/node/.opencode
       - opencode-manager-data:/app/data
     restart: unless-stopped
 
