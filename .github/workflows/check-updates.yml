@@ -1,0 +1,48 @@
+name: Check Upstream Updates
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Run hourly to check for updates
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write # Required to push new tags
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for tags
+
+      - name: Check npm versions
+        id: check
+        run: |
+          # Get latest versions from NPM
+          CODENOMAD_VERSION=$(npm view @neuralnomads/codenomad version)
+          echo "Found @neuralnomads/codenomad version: $CODENOMAD_VERSION"
+          
+          # Check if this version is already tagged
+          TAG="v$CODENOMAD_VERSION"
+          
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists. No new release needed."
+            echo "new_version=false" >> $GITHUB_OUTPUT
+          else
+            echo "Tag $TAG does not exist. Triggering release."
+            echo "new_version=true" >> $GITHUB_OUTPUT
+            echo "tag=$TAG" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create and Push Tag
+        if: steps.check.outputs.new_version == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          TAG="${{ steps.check.outputs.tag }}"
+          
+          git tag "$TAG"
+          git push origin "$TAG"
