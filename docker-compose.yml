@@ -29,7 +29,6 @@ services:
       - opencode-config:/root/.opencode
       - ./workspace:/workspace
     working_dir: /workspace
-    # No password set as it is behind a zero trust network
 
 volumes:
   opencode-config:
